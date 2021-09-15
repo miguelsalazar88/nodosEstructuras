@@ -10,6 +10,13 @@ public class Utils {
 		char[] alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 		return Character.toString(alfabeto[i]);
 	}
+
+	public static int letraToNum (String s){
+		String alfabeto = "abcdefghijklmnopqrstuvwxyz";
+		s = s.toLowerCase();
+		return alfabeto.indexOf(s.charAt(0));
+
+	}
 	
 
 }

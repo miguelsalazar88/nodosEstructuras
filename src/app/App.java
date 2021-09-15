@@ -4,6 +4,7 @@ import controlador.Controller;
 import modelo.Arista;
 import modelo.Modelo;
 import modelo.Nodo;
+import utils.Utils;
 import vista.Ventana;
 
 public class App {
@@ -29,7 +30,5 @@ public class App {
 			}
 			System.out.println();
 		}
-
 	}
-
 }

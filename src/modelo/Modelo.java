@@ -60,6 +60,7 @@ public class Modelo {
 								, vecino.getX() + 13, vecino.getY() + 13));
 			}
 		}
+
 		this.vista.getPanel().setNodosVista(this.nodosModelo);
 		this.vista.getPanel().repaint();
 	}

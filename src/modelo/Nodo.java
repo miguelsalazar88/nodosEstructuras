@@ -30,6 +30,24 @@ public class Nodo {
 
 	}
 
+	public boolean yaEsArista(Arista a){
+		
+		String alReves = String.valueOf(a.getNombre().charAt(1))
+				+ String.valueOf(a.getNombre().charAt(0));
+		boolean yaEsArista = false;
+
+		if(aristas.isEmpty()){
+			return false;
+		}
+
+		for (Arista arista: aristas) {
+			if (arista.getNombre().equals(a.getNombre()) || arista.getNombre().equals(alReves)){
+				yaEsArista = true;
+			}
+		}
+		return yaEsArista;
+	}
+
 	public boolean yaEsVecino (Nodo n){
 		boolean yaEsvecino = false;
 
