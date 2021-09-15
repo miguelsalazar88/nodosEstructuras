@@ -16,7 +16,7 @@ public class Ventana extends JFrame {
 	
 	public Ventana() {
 		
-		this.setSize(500, 500);
+		this.setSize(1200, 750);
 		this.setLayout(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.initComponents();
@@ -29,11 +29,11 @@ public class Ventana extends JFrame {
 		
 		this.add(panel);
 		this.add(botonAdyacencia);
-		this.botonAdyacencia.setBounds(10, 350, 100, 30);
+		this.botonAdyacencia.setBounds(10, 630, 100, 30);
 		this.add(botonIncidencia);
-		this.botonIncidencia.setBounds(10, 400, 100, 30);
+		this.botonIncidencia.setBounds(10, 665, 100, 30);
 		this.add(botonPesos);
-		this.botonPesos.setBounds(10, 450, 100, 30);
+		this.botonPesos.setBounds(10, 700, 100, 30);
 		
 	}
 

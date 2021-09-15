@@ -15,7 +15,7 @@ public class Panel extends JPanel {
 	private ArrayList<Arista> aristasVista = new ArrayList<Arista>();
 	
 	public Panel() {
-		this.setSize(500,300);
+		this.setSize(1170,600);
 		this.setBackground(Color.black);
 		this.setVisible(true);
 	}
@@ -24,13 +24,21 @@ public class Panel extends JPanel {
 	@Override
 	
 	public void paint(Graphics g) {
-		
+
+		for (Nodo n:nodosVista) {
+			g.setColor(Color.CYAN);
+			for (Arista a: n.getAristas()) {
+				g.drawLine(a.getX1(),a.getY1(),a.getX2(),a.getY2());
+			}
+		}
 		
 		for (Nodo n : nodosVista) {
+
 			g.setColor(Color.red);
 			g.fillOval(n.getX(), n.getY(), 30, 30);
 			g.setColor(Color.white);
 			g.drawString(n.getNombre(), n.getX()+10, n.getY()+20);
+
 		}
 	
 	}

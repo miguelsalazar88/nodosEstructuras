@@ -19,10 +19,32 @@ public class Nodo {
 	}
 	
 	public void setPosicion() {
-		this.x = Utils.rnd.nextInt(450);
+		this.x = Utils.rnd.nextInt(1150);
 		this.y = Utils.rnd.nextInt(250);
 	}
 
+	public void agregarVecino(Nodo n){
+
+		this.vecinos.add(n);
+		n.vecinos.add(this);
+
+	}
+
+	public boolean yaEsVecino (Nodo n){
+		boolean yaEsvecino = false;
+
+		if (n.getNombre().equals(this.getNombre())){
+			yaEsvecino = true;
+		}
+		else {
+			for (Nodo vecino : vecinos) {
+				if (vecino.getNombre().equals(n.getNombre())) {
+					yaEsvecino = true;
+				}
+			}
+		}
+		return yaEsvecino;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -68,10 +90,6 @@ public class Nodo {
 		return aristas;
 	}
 
-
-	public void setAristas(ArrayList<Arista> aristas) {
-		this.aristas = aristas;
-	}
 	
 	
 	
