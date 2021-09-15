@@ -35,10 +35,7 @@ public class Modelo {
 	}
 	
 	public ArrayList<Nodo> crearVecinos(){
-		
-		int numVecinos = Utils.rnd.nextInt(3);
-		int[] vecinos = new int[numVecinos];
-		// Toca diseñar este método.
+		ArrayList<Nodo> vecinos = new ArrayList<Nodo>();
 		
 	}
 
