@@ -1,6 +1,7 @@
 package app;
 
 import controlador.Controller;
+import modelo.Arista;
 import modelo.Modelo;
 import modelo.Nodo;
 import vista.Ventana;
@@ -21,6 +22,10 @@ public class App {
 			System.out.println("Vecinos: ");
 			for (Nodo vecino: n.getVecinos()) {
 				System.out.print(vecino.getNombre() + " ");
+			}
+			System.out.println("\n Aristas: ");
+			for (Arista a: n.getAristas()) {
+				System.out.print(a.getNombre() + ". ");
 			}
 			System.out.println();
 		}

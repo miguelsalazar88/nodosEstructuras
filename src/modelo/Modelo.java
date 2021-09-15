@@ -55,7 +55,9 @@ public class Modelo {
 		for (Nodo n: nodosModelo) {
 			for (Nodo vecino: n.getVecinos()) {
 				String nombre = n.getNombre() + vecino.getNombre();
-				n.getAristas().add(new Arista(nombre,n.getX()+13,n.getY()+13, vecino.getX()+13, vecino.getY()+13));
+				n.getAristas().add(
+						new Arista(nombre, n.getX() + 13, n.getY() + 13
+								, vecino.getX() + 13, vecino.getY() + 13));
 			}
 		}
 		this.vista.getPanel().setNodosVista(this.nodosModelo);

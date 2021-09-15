@@ -1,7 +1,6 @@
 package vista;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import controlador.Controller;
 
@@ -9,9 +8,11 @@ public class Ventana extends JFrame {
 
 	private Panel panel = new Panel();
 	private Controller controller;
-	private JButton botonAdyacencia = new JButton("Adyacencia");
-	private JButton botonIncidencia = new JButton("Incidencia");
-	private JButton botonPesos = new JButton("Pesos");
+	private JButton botonAdyacencia = new JButton("Crear Matriz de Adyacencia");
+	private JButton botonIncidencia = new JButton("Crear Matriz de Incidencia");
+	private JButton botonPesos = new JButton("Crear Matriz de Pesos");
+	private JLabel labelOrigen = new JLabel("Origen");
+	private JLabel labelDestino = new JLabel("Destino");
 	
 	
 	public Ventana() {
@@ -29,11 +30,11 @@ public class Ventana extends JFrame {
 		
 		this.add(panel);
 		this.add(botonAdyacencia);
-		this.botonAdyacencia.setBounds(10, 630, 100, 30);
+		this.botonAdyacencia.setBounds(10, 620, 200, 30);
 		this.add(botonIncidencia);
-		this.botonIncidencia.setBounds(10, 665, 100, 30);
+		this.botonIncidencia.setBounds(10, 655, 200, 30);
 		this.add(botonPesos);
-		this.botonPesos.setBounds(10, 700, 100, 30);
+		this.botonPesos.setBounds(10, 690, 200, 30);
 		
 	}
 
