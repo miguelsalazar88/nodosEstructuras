@@ -21,7 +21,10 @@ public class Controller implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		if(e.getSource().equals(this.vista.getBotonAdyacencia())){
+			this.modelo.setAdyacencia();
+			this.vista.getAdyacencia().setVisible(true);
+		}
 	}
 
 }

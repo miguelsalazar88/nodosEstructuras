@@ -13,6 +13,7 @@ public class Ventana extends JFrame {
 	private JButton botonPesos = new JButton("Crear Matriz de Pesos");
 	private JLabel labelOrigen = new JLabel("Origen");
 	private JLabel labelDestino = new JLabel("Destino");
+	private Adyacencia adyacencia = new Adyacencia();
 	
 	
 	public Ventana() {
@@ -21,8 +22,7 @@ public class Ventana extends JFrame {
 		this.setLayout(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.initComponents();
-		this.setVisible(true);	
-		
+		this.setVisible(true);
 	}
 	
 	
@@ -85,9 +85,12 @@ public class Ventana extends JFrame {
 	public void setBotonPesos(JButton botonPesos) {
 		this.botonPesos = botonPesos;
 	}
-	
-	
 
-	
-	
+	public Adyacencia getAdyacencia() {
+		return adyacencia;
+	}
+
+	public void setAdyacencia(Adyacencia adyacencia) {
+		this.adyacencia = adyacencia;
+	}
 }

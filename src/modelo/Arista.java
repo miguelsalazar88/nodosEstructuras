@@ -3,13 +3,15 @@ package modelo;
 public class Arista {
 	
 	private String nombre;
+	private int peso;
 	private int x1;
 	private int y1;
 	private int x2;
 	private int y2;
 
-	public Arista(String nombre, int x1, int y1, int x2, int y2) {
+	public Arista(String nombre, int peso, int x1, int y1, int x2, int y2) {
 		this.nombre = nombre;
+		this.peso = peso;
 		this.x1 = x1;
 		this.y1 = y1;
 		this.x2 = x2;
@@ -22,6 +24,14 @@ public class Arista {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public int getPeso() {
+		return peso;
+	}
+
+	public void setPeso(int peso) {
+		this.peso = peso;
 	}
 
 	public int getX1() {

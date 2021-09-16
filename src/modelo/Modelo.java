@@ -29,6 +29,11 @@ public class Modelo {
 
 		this.crearVecinos();
 	}
+
+	public void borrarGrafo(){
+		this.nodosModelo.clear();
+		this.vista.getPanel().setNodosVista(nodosModelo);
+	}
 	
 	public void crearVecinos(){
 
@@ -55,7 +60,7 @@ public class Modelo {
 		for (Nodo n: nodosModelo) {
 			for (Nodo vecino: n.getVecinos()) {
 				String nombre = n.getNombre() + vecino.getNombre();
-				Arista a = new Arista(nombre, n.getX() + 13, n.getY() + 13, vecino.getX() + 13, vecino.getY() + 13);
+				Arista a = new Arista(nombre,Utils.rnd.nextInt(20)+1, n.getX() + 13, n.getY() + 13, vecino.getX() + 13, vecino.getY() + 13);
 				if (!n.yaEsArista(a)){
 					n.getAristas().add(a);
 				}
@@ -69,8 +74,23 @@ public class Modelo {
 		this.vista.getPanel().repaint();
 	}
 
-	//Getters y Setters
+	public void setAdyacencia(){
+		String[][] matriz = new String[nodosModelo.size()+1][nodosModelo.size()+1];
+		for (int filas = 0; filas < matriz.length; filas++) {
+			for (int columnas = 0; columnas < matriz.length; columnas++) {
+				if(filas == columnas){
+					matriz[filas][columnas] = "*";
+				}
+				else {
+					matriz[filas][columnas] = String.valueOf(0);
+				}
+			}
 
+		}
+		this.vista.getAdyacencia().setText(matriz);
+	}
+
+	//Getters y Setters
 
 	public ArrayList<Nodo> getNodosModelo() {
 		return nodosModelo;

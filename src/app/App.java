@@ -14,6 +14,8 @@ public class App {
 		Modelo m = new Modelo(v);
 		Controller c = new Controller(v,m);
 
+		//Prueba
+
 		m.crearGrafo();
 
 		for (int i = 0; i < m.getNodosModelo().size(); i++) {
@@ -26,7 +28,7 @@ public class App {
 			}
 			System.out.println("\n Aristas: ");
 			for (Arista a: n.getAristas()) {
-				System.out.print(a.getNombre() + ". ");
+				System.out.print(a.getNombre() + + a.getPeso() + ". ");
 			}
 			System.out.println();
 		}
