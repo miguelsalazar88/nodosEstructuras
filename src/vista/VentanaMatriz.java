@@ -10,30 +10,27 @@ public class VentanaMatriz extends JDialog {
 
     private ArrayList<Nodo> nodosAdyacencia = new ArrayList<Nodo>();
     private ArrayList<Arista> aristasAdyacencia = new ArrayList<Arista>();
-    private JTextArea areaTexto = new JTextArea();
+    private JTable tabla = new JTable(15,15);
 
     public VentanaMatriz(){
         this.setVisible(false);
-        this.setSize(200, 200);
-        this.setComponents();
+        this.setSize(500, 500);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.add(tabla);
+        this.tabla.setBounds(10,10,450,450);
     }
 
-    private void setComponents() {
-        this.add(areaTexto);
-        this.areaTexto.setBounds(10,10,180,180);
-        this.areaTexto.setEditable(false);
-    }
 
-    public void setText(String titulo, String[][] matriz){
-        String s = titulo + "\n";
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j <matriz.length; j++) {
-                s = s + "[" + matriz[i][j] + "]";
+    public void imprimirMatriz(String[][] matriz){
+
+        for (int filas = 0; filas < matriz.length; filas++) {
+            for (int columnas = 0; columnas < matriz[0].length; columnas++) {
+                this.tabla.setValueAt(matriz[filas][columnas],filas,columnas);
             }
-            s = s + "\n";
         }
-        this.areaTexto.setText(s);
+
     }
+
+
 
 }

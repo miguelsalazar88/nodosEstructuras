@@ -26,13 +26,17 @@ public class Controller implements ActionListener, ItemListener {
 
 		if(e.getSource().equals(this.vista.getBotonGenerar())){
 			this.modelo.crearGrafo();
-			System.out.println("me espicharon");
 		}
 		if(e.getSource().equals(this.vista.getBotonAdyacencia())){
 			this.modelo.setAdyacencia();
-			this.vista.getAdyacencia().setVisible(true);
-			System.out.println("adyacencia");
+			this.vista.getVentanaMatriz().setVisible(true);
 		}
+
+		if (e.getSource().equals(this.vista.getBotonIncidencia())){
+			this.modelo.setInferencia();
+			this.vista.getVentanaMatriz().setVisible(true);
+		}
+
 		if(e.getSource().equals(this.vista.getBotonLiberar())){
 			this.modelo.borrarGrafo();
 			System.out.println("Se borró");

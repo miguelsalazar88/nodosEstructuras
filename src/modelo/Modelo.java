@@ -41,7 +41,6 @@ public class Modelo {
 	public void crearVecinos(){
 
 	int numAristas = Utils.rnd.nextInt(nodosModelo.size())+nodosModelo.size();
-		System.out.println("Vamos a repartir " + numAristas + " aristas");
 
 		while (numAristas >= 0){
 			Nodo a = nodosModelo.get(Utils.rnd.nextInt(nodosModelo.size()));
@@ -66,12 +65,16 @@ public class Modelo {
 				Arista a = new Arista(nombre,Utils.rnd.nextInt(20)+1, n.getX() + 13, n.getY() + 13, vecino.getX() + 13, vecino.getY() + 13);
 				if (!n.yaEsArista(a)){
 					n.getAristas().add(a);
+					System.out.print(a.getNombre()+", ");
+
 				}
 				if(!vecino.yaEsArista(a)){
 					vecino.getAristas().add(a);
+					aristasModelo.add(a);
 				}
 			}
 		}
+		System.out.println();
 		this.vista.getPanel().setNodosVista(this.nodosModelo);
 		this.vista.setCboOrigen(this.setOrigenDestino());
 		this.vista.setCboDestino(this.setOrigenDestino());
@@ -79,7 +82,7 @@ public class Modelo {
 	}
 
 	public void setAdyacencia(){
-		String titulo = "Matriz de Adyacencia: \n";
+
 		String[][] matriz = new String[nodosModelo.size()+1][nodosModelo.size()+1];
 		matriz[0][0] = "*";
 
@@ -91,7 +94,7 @@ public class Modelo {
 			catch (Exception e){
 			}
 		}
-		
+
 		for (int fila = 1; fila < matriz.length; fila++) {
 			for (int columna = 1; columna < matriz.length; columna++) {
 
@@ -106,7 +109,36 @@ public class Modelo {
 				}
 			}
 		}
-		this.vista.getAdyacencia().setText(titulo,matriz);
+
+		this.vista.getVentanaMatriz().imprimirMatriz(matriz);
+
+	}
+
+	public void setInferencia(){
+		String[][] matriz = new String[nodosModelo.size()+1][nodosModelo.size()+1];
+		matriz[0][0] = "*";
+
+		for (int i = 0; i < matriz.length; i++) {
+			try{
+				matriz [0][i+1] = aristasModelo.get(i).getNombre();
+				matriz [i+1][0] = nodosModelo.get(i).getNombre();
+			}
+			catch (Exception e){
+			}
+		}
+
+		for (int fila = 1; fila < matriz.length; fila++) {
+			for (int columna = 1; columna < matriz.length; columna++) {
+
+				if(nodosModelo.get(fila-1).getAristas().contains(nodosModelo.get(columna-1))){
+					matriz[fila][columna] = "1";
+				}
+				else{
+					matriz[fila][columna] = "0";
+				}
+			}
+		}
+		this.vista.getVentanaMatriz().imprimirMatriz(matriz);
 	}
 
 	public ArrayList<String> setOrigenDestino(){
