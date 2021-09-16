@@ -69,25 +69,39 @@ public class Modelo {
 				}
 			}
 		}
-
 		this.vista.getPanel().setNodosVista(this.nodosModelo);
 		this.vista.getPanel().repaint();
 	}
 
 	public void setAdyacencia(){
+		String titulo = "Matriz de Adyacencia: \n";
 		String[][] matriz = new String[nodosModelo.size()+1][nodosModelo.size()+1];
-		for (int filas = 0; filas < matriz.length; filas++) {
-			for (int columnas = 0; columnas < matriz.length; columnas++) {
-				if(filas == columnas){
-					matriz[filas][columnas] = "*";
+		matriz[0][0] = "*";
+
+		for (int i = 0; i < matriz.length; i++) {
+			try{
+				matriz [0][i+1] = nodosModelo.get(i).getNombre();
+				matriz [i+1][0] = nodosModelo.get(i).getNombre();
+			}
+			catch (Exception e){
+			}
+		}
+		
+		for (int fila = 1; fila < matriz.length; fila++) {
+			for (int columna = 1; columna < matriz.length; columna++) {
+
+				if(nodosModelo.get(fila-1).getVecinos().contains(nodosModelo.get(columna-1))){
+					matriz[fila][columna] = "1";
 				}
-				else {
-					matriz[filas][columnas] = String.valueOf(0);
+				else{
+					matriz[fila][columna] = "0";
+				}
+				if(fila == columna){
+					matriz[fila][columna] = "*";
 				}
 			}
-
 		}
-		this.vista.getAdyacencia().setText(matriz);
+		this.vista.getAdyacencia().setText(titulo,matriz);
 	}
 
 	//Getters y Setters
