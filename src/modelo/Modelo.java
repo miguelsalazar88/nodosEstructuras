@@ -7,6 +7,8 @@ import jdk.jshell.execution.Util;
 import utils.Utils;
 import vista.Ventana;
 
+import javax.swing.*;
+
 public class Modelo {
 	
 	private Ventana vista;
@@ -33,6 +35,7 @@ public class Modelo {
 	public void borrarGrafo(){
 		this.nodosModelo.clear();
 		this.vista.getPanel().setNodosVista(nodosModelo);
+		this.vista.getPanel().repaint();
 	}
 	
 	public void crearVecinos(){
@@ -70,6 +73,8 @@ public class Modelo {
 			}
 		}
 		this.vista.getPanel().setNodosVista(this.nodosModelo);
+		this.vista.setCboOrigen(this.setOrigenDestino());
+		this.vista.setCboDestino(this.setOrigenDestino());
 		this.vista.getPanel().repaint();
 	}
 
@@ -103,6 +108,49 @@ public class Modelo {
 		}
 		this.vista.getAdyacencia().setText(titulo,matriz);
 	}
+
+	public ArrayList<String> setOrigenDestino(){
+
+		ArrayList<String> listaOrigen = new ArrayList<String>();
+
+		for (int i = 0; i < nodosModelo.size(); i++) {
+			listaOrigen.add(nodosModelo.get(i).getNombre());
+		}
+		return listaOrigen;
+	}
+
+	public void verificarAdyacencia(String a, String b){
+
+		if(a.equals(b)){
+			JOptionPane.showMessageDialog(null, "No puedes verificar" +
+					"la adyacencia del mismo Nodo");
+		}
+		else {
+
+			Nodo nodoA = new Nodo("");
+			Nodo nodoB = new Nodo("");
+			for (int i = 0; i < nodosModelo.size(); i++) {
+				if (nodosModelo.get(i).getNombre().equals(a)) {
+					nodoA = nodosModelo.get(i);
+				}
+				if (nodosModelo.get(i).getNombre().equals(b)) {
+					nodoB = nodosModelo.get(i);
+				}
+			}
+
+			if (nodoA.esVecino(nodoB) || nodoB.esVecino(nodoA)) {
+				JOptionPane.showMessageDialog(null, "Nodo " + nodoA.getNombre() +
+						" y Nodo " + nodoB.getNombre() + " SI son adyacentes");
+			}
+
+			else{
+				JOptionPane.showMessageDialog(null, "Nodo " + nodoA.getNombre() +
+						" y Nodo " + nodoB.getNombre() + " NO son adyacentes");
+			}
+		}
+	}
+
+
 
 	//Getters y Setters
 

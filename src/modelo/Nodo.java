@@ -64,6 +64,19 @@ public class Nodo {
 		return yaEsvecino;
 	}
 
+	public boolean esVecino(Nodo vecino){
+		boolean esVecino = false;
+
+		for (int i = 0; i < vecinos.size() ; i++) {
+			if(this.vecinos.get(i).getNombre().equals(vecino.getNombre())){
+				esVecino = true;
+			}
+		}
+		return esVecino;
+	}
+
+	//Getters y Setters
+
 	public String getNombre() {
 		return nombre;
 	}

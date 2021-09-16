@@ -14,9 +14,7 @@ public class App {
 		Modelo m = new Modelo(v);
 		Controller c = new Controller(v,m);
 
-		//Prueba
 
-		m.crearGrafo();
 
 		for (int i = 0; i < m.getNodosModelo().size(); i++) {
 			Nodo n = m.getNodosModelo().get(i);

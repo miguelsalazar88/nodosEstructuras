@@ -4,6 +4,8 @@ import javax.swing.*;
 
 import controlador.Controller;
 
+import java.util.ArrayList;
+
 public class Ventana extends JFrame {
 
 	private Panel panel = new Panel();
@@ -11,9 +13,17 @@ public class Ventana extends JFrame {
 	private JButton botonAdyacencia = new JButton("Crear Matriz de Adyacencia");
 	private JButton botonIncidencia = new JButton("Crear Matriz de Incidencia");
 	private JButton botonPesos = new JButton("Crear Matriz de Pesos");
-	private JLabel labelOrigen = new JLabel("Origen");
-	private JLabel labelDestino = new JLabel("Destino");
+	private JButton botonGenerar = new JButton("Generar Grafo");
+	private JButton botonLiberar = new JButton("Liberar Grafo");
+	private JButton botonVerificarAdyacencia = new JButton("Verificar Adyacencia");
+	private JButton botonObtenerPeso = new JButton("Obtener Peso");
+	private JButton botonEliminarArista = new JButton("Eliminar Arista");
+	private JLabel labelOrigen = new JLabel("Origen:");
+	private JLabel labelDestino = new JLabel("Destino:");
 	private VentanaMatriz adyacencia = new VentanaMatriz();
+
+	private JComboBox<String> cboOrigen = new JComboBox<String>();
+	private JComboBox<String> cboDestino = new JComboBox<String>();
 	
 	
 	public Ventana() {
@@ -35,6 +45,25 @@ public class Ventana extends JFrame {
 		this.botonIncidencia.setBounds(10, 655, 200, 30);
 		this.add(botonPesos);
 		this.botonPesos.setBounds(10, 690, 200, 30);
+		this.add(botonVerificarAdyacencia);
+		this.botonVerificarAdyacencia.setBounds(800,620,200,30);
+		this.add(botonObtenerPeso);
+		this.botonObtenerPeso.setBounds(800,655,200,30);
+		this.add(botonEliminarArista);
+		this.botonEliminarArista.setBounds(800,690,200,30);
+		this.add(botonGenerar);
+		this.botonGenerar.setBounds(300,620,200,30);
+		this.add(botonLiberar);
+		this.botonLiberar.setBounds(300,655,200,30);
+		this.add(labelOrigen);
+		this.labelOrigen.setBounds(600,620,70,30);
+		this.add(labelDestino);
+		this.labelDestino.setBounds(600,655,70,30);
+		this.add(cboOrigen);
+		this.cboOrigen.setBounds(675,620,70,30);
+		this.add(cboDestino);
+		this.cboDestino.setBounds(675,655,70,30);
+
 		
 	}
 
@@ -43,7 +72,26 @@ public class Ventana extends JFrame {
 		this.controller = cont;
 		this.botonIncidencia.addActionListener(cont);
 		this.botonAdyacencia.addActionListener(cont);
+		this.botonGenerar.addActionListener(cont);
+		this.botonLiberar.addActionListener(cont);
+		this.cboOrigen.addItemListener(cont);
+		this.cboDestino.addItemListener(cont);
+		this.botonVerificarAdyacencia.addActionListener(cont);
+		this.botonObtenerPeso.addActionListener(cont);
+		this.botonEliminarArista.addActionListener(cont);
 		
+	}
+
+	public void setCboOrigen(ArrayList<String> lista){
+		for (int i = 0; i < lista.size(); i++) {
+			this.cboOrigen.addItem(lista.get(i));
+		}
+	}
+
+	public void setCboDestino(ArrayList<String> lista){
+		for (int i = 0; i < lista.size(); i++) {
+			this.cboDestino.addItem(lista.get(i));
+		}
 	}
 
 
@@ -93,4 +141,33 @@ public class Ventana extends JFrame {
 	public void setAdyacencia(VentanaMatriz adyacencia) {
 		this.adyacencia = adyacencia;
 	}
+
+	public JButton getBotonGenerar() {
+		return botonGenerar;
+	}
+
+	public JButton getBotonLiberar() {
+		return botonLiberar;
+	}
+
+	public JComboBox<String> getCboOrigen() {
+		return cboOrigen;
+	}
+
+	public JComboBox<String> getCboDestino() {
+		return cboDestino;
+	}
+
+	public JButton getBotonVerificarAdyacencia() {
+		return botonVerificarAdyacencia;
+	}
+
+	public JButton getBotonObtenerPeso() {
+		return botonObtenerPeso;
+	}
+
+	public JButton getBotonEliminarArista() {
+		return botonEliminarArista;
+	}
 }
+
