@@ -15,22 +15,5 @@ public class App {
 		Ventana v = new Ventana();
 		Modelo m = new Modelo(v);
 		Controller c = new Controller(v,m);
-
-		//Prueba.
-
-		for (int i = 0; i < m.getNodosModelo().size(); i++) {
-			Nodo n = m.getNodosModelo().get(i);
-
-			System.out.println("Nodo: " + n.getNombre());
-			System.out.println("Vecinos: ");
-			for (Nodo vecino: n.getVecinos()) {
-				System.out.print(vecino.getNombre() + " ");
-			}
-			System.out.println("\n Aristas: ");
-			for (Arista a: n.getAristas()) {
-				System.out.print(a.getNombre() + + a.getPeso() + ". ");
-			}
-			System.out.println();
-		}
 	}
 }

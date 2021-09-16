@@ -12,7 +12,6 @@ import modelo.Nodo;
 public class Panel extends JPanel {
 	
 	private ArrayList<Nodo> nodosVista = new ArrayList<Nodo>();
-	private ArrayList<Arista> aristasVista = new ArrayList<Arista>();
 	
 	public Panel() {
 		this.setSize(1170,600);
@@ -51,16 +50,6 @@ public class Panel extends JPanel {
 
 	public void setNodosVista(ArrayList<Nodo> nodosVista) {
 		this.nodosVista = nodosVista;
-	}
-
-
-	public ArrayList<Arista> getAristasVista() {
-		return aristasVista;
-	}
-
-
-	public void setAristasVista(ArrayList<Arista> aristasVista) {
-		this.aristasVista = aristasVista;
 	}
 	
 	

@@ -74,11 +74,10 @@ public class Ventana extends JFrame {
 		this.botonAdyacencia.addActionListener(cont);
 		this.botonGenerar.addActionListener(cont);
 		this.botonLiberar.addActionListener(cont);
-		this.cboOrigen.addItemListener(cont);
-		this.cboDestino.addItemListener(cont);
 		this.botonVerificarAdyacencia.addActionListener(cont);
 		this.botonObtenerPeso.addActionListener(cont);
 		this.botonEliminarArista.addActionListener(cont);
+		this.botonPesos.addActionListener(cont);
 		
 	}
 

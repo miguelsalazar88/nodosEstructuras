@@ -5,10 +5,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+import modelo.Arista;
 import modelo.Modelo;
+import modelo.Nodo;
 import vista.Ventana;
 
-public class Controller implements ActionListener, ItemListener {
+public class Controller implements ActionListener {
 	
 	private Ventana vista;
 	private Modelo modelo;
@@ -26,6 +28,29 @@ public class Controller implements ActionListener, ItemListener {
 
 		if(e.getSource().equals(this.vista.getBotonGenerar())){
 			this.modelo.crearGrafo();
+
+			//Prueba
+
+			System.out.println("********* Nuevo Grafo ************ ");
+			System.out.println();
+
+			for (int i = 0; i < this.modelo.getNodosModelo().size(); i++) {
+				Nodo n = this.modelo.getNodosModelo().get(i);
+
+				System.out.print("Nodo: " + n.getNombre());
+				System.out.print(", Vecinos: ");
+				for (Nodo vecino: n.getVecinos()) {
+					System.out.print(vecino.getNombre() + " ");
+				}
+				System.out.print(" Aristas: ");
+				for (Arista a: n.getAristas()) {
+					System.out.print(a.getNombre() + + a.getPeso() + ". ");
+				}
+				System.out.println();
+			}
+
+			System.out.println("Lista de Aristas: ");
+
 		}
 		if(e.getSource().equals(this.vista.getBotonAdyacencia())){
 			this.modelo.setAdyacencia();
@@ -33,8 +58,8 @@ public class Controller implements ActionListener, ItemListener {
 		}
 
 		if (e.getSource().equals(this.vista.getBotonIncidencia())){
-			this.modelo.setInferencia();
 			this.vista.getVentanaMatriz().setVisible(true);
+			this.modelo.setIncidencia();
 		}
 
 		if(e.getSource().equals(this.vista.getBotonLiberar())){
@@ -56,11 +81,10 @@ public class Controller implements ActionListener, ItemListener {
 			this.modelo.eliminarArista(this.vista.getCboOrigen().getSelectedItem().toString(),
 					this.vista.getCboDestino().getSelectedItem().toString());
 		}
-	}
 
-
-	@Override
-	public void itemStateChanged(ItemEvent e) {
-
+		if(e.getSource().equals(this.vista.getBotonPesos())){
+			this.modelo.setMatrizPesos();
+			this.vista.getVentanaMatriz().setVisible(true);
+		}
 	}
 }

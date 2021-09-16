@@ -1,6 +1,6 @@
 package modelo;
 
-public class Arista {
+public class Arista implements Comparable<Arista> {
 	
 	private String nombre;
 	private int peso;
@@ -65,7 +65,10 @@ public class Arista {
 	public void setY2(int y2) {
 		this.y2 = y2;
 	}
-	
-	
 
+
+	@Override
+	public int compareTo(Arista o) {
+		return this.getNombre().compareTo(o.getNombre());
+	}
 }

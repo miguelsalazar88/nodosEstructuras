@@ -1,9 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import jdk.jshell.execution.Util;
+import java.util.Collections;
 import utils.Utils;
 import vista.Ventana;
 
@@ -12,15 +10,16 @@ import javax.swing.*;
 public class Modelo {
 	
 	private Ventana vista;
-	private ArrayList<Nodo> nodosModelo = new ArrayList<Nodo>();
-	private ArrayList<Arista> aristasModelo = new ArrayList<Arista>(); //No se si lo necesito
+	private ArrayList<Nodo> nodosModelo = new ArrayList<>();
+	private ArrayList<Arista> aristasModelo = new ArrayList<>(); //No se si lo necesito
 	
 	public Modelo(Ventana vista) {
 		this.vista = vista;
 	}
 	
 	public void crearGrafo() {
-		
+
+		this.aristasModelo.clear();
 		this.nodosModelo.clear();
 		
 		int num = Utils.rnd.nextInt(4)+6;
@@ -37,10 +36,11 @@ public class Modelo {
 		this.vista.getPanel().setNodosVista(nodosModelo);
 		this.vista.getPanel().repaint();
 	}
-	
+
 	public void crearVecinos(){
 
-	int numAristas = Utils.rnd.nextInt(nodosModelo.size())+nodosModelo.size();
+
+		int numAristas = Utils.rnd.nextInt(nodosModelo.size())+nodosModelo.size();
 
 		while (numAristas >= 0){
 			Nodo a = nodosModelo.get(Utils.rnd.nextInt(nodosModelo.size()));
@@ -59,26 +59,36 @@ public class Modelo {
 	}
 
 	public void crearAristas(){
+
 		for (Nodo n: nodosModelo) {
 			for (Nodo vecino: n.getVecinos()) {
 				String nombre = n.getNombre() + vecino.getNombre();
 				Arista a = new Arista(nombre,Utils.rnd.nextInt(20)+1, n.getX() + 13, n.getY() + 13, vecino.getX() + 13, vecino.getY() + 13);
 				if (!n.yaEsArista(a)){
 					n.getAristas().add(a);
-					System.out.print(a.getNombre()+", ");
-
 				}
 				if(!vecino.yaEsArista(a)){
 					vecino.getAristas().add(a);
-					aristasModelo.add(a);
 				}
 			}
 		}
 		System.out.println();
 		this.vista.getPanel().setNodosVista(this.nodosModelo);
+		this.agregarAristas();
 		this.vista.setCboOrigen(this.setOrigenDestino());
 		this.vista.setCboDestino(this.setOrigenDestino());
 		this.vista.getPanel().repaint();
+	}
+
+	public void agregarAristas(){
+		for (Nodo n: nodosModelo) {
+			for (Arista a: n.getAristas()) {
+				if(!aristasModelo.contains(a)){
+					aristasModelo.add(a);
+				}
+			}
+		}
+		Collections.sort(aristasModelo);
 	}
 
 	public void setAdyacencia(){
@@ -114,32 +124,72 @@ public class Modelo {
 
 	}
 
-	public void setInferencia(){
-		String[][] matriz = new String[nodosModelo.size()+1][nodosModelo.size()+1];
+	public void setIncidencia(){
+		String[][] matriz = new String[aristasModelo.size()+1][nodosModelo.size()+1];
 		matriz[0][0] = "*";
 
 		for (int i = 0; i < matriz.length; i++) {
-			try{
-				matriz [0][i+1] = aristasModelo.get(i).getNombre();
-				matriz [i+1][0] = nodosModelo.get(i).getNombre();
+			try {
+				matriz[0][i+1] = aristasModelo.get(i).getNombre();
+			} catch (Exception e) {
 			}
-			catch (Exception e){
+		}
+		for (int i = 0; i < nodosModelo.size(); i++) {
+			try {
+				matriz[i+1][0] = nodosModelo.get(i).getNombre();
+			} catch (Exception e) {
 			}
 		}
 
-		for (int fila = 1; fila < matriz.length; fila++) {
-			for (int columna = 1; columna < matriz.length; columna++) {
+		for (int i = 0; i <aristasModelo.size() ; i++) {
+			for (int j = 0; j < nodosModelo.size(); j++) {
+				try {
+					if (nodosModelo.get(i).getAristas().contains(aristasModelo.get(j))) {
 
-				if(nodosModelo.get(fila-1).getAristas().contains(nodosModelo.get(columna-1))){
-					matriz[fila][columna] = "1";
-				}
-				else{
-					matriz[fila][columna] = "0";
+						matriz[i + 1][j + 1] = "1";
+					} else {
+						matriz[i + 1][j + 1] = "0";
+					}
+				} catch (Exception e) {
 				}
 			}
 		}
+
+		this.vista.getVentanaMatriz().imprimirMatriz(matriz);
+
+	}
+
+	public void setMatrizPesos(){
+
+		String[][] matriz = new String[nodosModelo.size()+1][nodosModelo.size()+1];
+		matriz[0][0] = "*";
+
+		for (int i = 0; i < nodosModelo.size(); i++) {
+			matriz[0][i+1] = nodosModelo.get(i).getNombre();
+			matriz[i+1][0] = nodosModelo.get(i).getNombre();
+			for (int j = 0; j < nodosModelo.size(); j++) {
+				if(i == j){
+					matriz[i+1][j+1] = "*";
+				}
+				else {
+					String arista = nodosModelo.get(i).getNombre() + nodosModelo.get(j).getNombre();
+					String atsira = nodosModelo.get(j).getNombre() + nodosModelo.get(i).getNombre();
+					for (Arista a: this.aristasModelo) {
+						if (a.getNombre().equals(arista) || a.getNombre().equals(atsira)){
+							matriz[i+1][j+1] = String.valueOf(a.getPeso());
+						}
+
+					}
+					if (matriz[i+1][j+1] ==null){
+						matriz[i+1][j+1] = "0";
+					}
+				}
+			}
+		}
+
 		this.vista.getVentanaMatriz().imprimirMatriz(matriz);
 	}
+
 
 	public ArrayList<String> setOrigenDestino(){
 
@@ -209,7 +259,7 @@ public class Modelo {
 	public void eliminarArista(String a, String b){
 		String alDerecho = a+b;
 		String alReves = b+a;
-		Boolean hayArista = false;
+		boolean hayArista = false;
 
 		for (int i = 0; i < nodosModelo.size(); i++) {
 			for (int j = 0; j < nodosModelo.get(i).getAristas().size(); j++) {
@@ -235,23 +285,9 @@ public class Modelo {
 
 	}
 
-
-
 	//Getters y Setters
 
 	public ArrayList<Nodo> getNodosModelo() {
 		return nodosModelo;
-	}
-
-	public void setNodosModelo(ArrayList<Nodo> nodosModelo) {
-		this.nodosModelo = nodosModelo;
-	}
-
-	public ArrayList<Arista> getAristasModelo() {
-		return aristasModelo;
-	}
-
-	public void setAristasModelo(ArrayList<Arista> aristasModelo) {
-		this.aristasModelo = aristasModelo;
 	}
 }
