@@ -81,6 +81,21 @@ public class Controller implements ActionListener {
 			this.modelo.eliminarArista(this.vista.getCboOrigen().getSelectedItem().toString(),
 					this.vista.getCboDestino().getSelectedItem().toString());
 		}
+<<<<<<< HEAD
+=======
+
+		if(e.getSource().equals(this.vista.getBotonPesos())){
+			this.modelo.setMatrizPesos();
+			this.vista.getVentanaMatriz().setVisible(true);
+			System.out.println("Me lleva");
+		}
+
+	}
+
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+>>>>>>> Miguel
 
 		if(e.getSource().equals(this.vista.getBotonPesos())){
 			this.modelo.setMatrizPesos();

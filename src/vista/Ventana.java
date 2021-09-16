@@ -10,20 +10,20 @@ public class Ventana extends JFrame {
 
 	private Panel panel = new Panel();
 	private Controller controller;
-	private JButton botonAdyacencia = new JButton("Crear Matriz de Adyacencia");
-	private JButton botonIncidencia = new JButton("Crear Matriz de Incidencia");
-	private JButton botonPesos = new JButton("Crear Matriz de Pesos");
-	private JButton botonGenerar = new JButton("Generar Grafo");
-	private JButton botonLiberar = new JButton("Liberar Grafo");
-	private JButton botonVerificarAdyacencia = new JButton("Verificar Adyacencia");
-	private JButton botonObtenerPeso = new JButton("Obtener Peso");
-	private JButton botonEliminarArista = new JButton("Eliminar Arista");
-	private JLabel labelOrigen = new JLabel("Origen:");
-	private JLabel labelDestino = new JLabel("Destino:");
+	private final JButton botonAdyacencia = new JButton("Crear Matriz de Adyacencia");
+	private final JButton botonIncidencia = new JButton("Crear Matriz de Incidencia");
+	private final JButton botonPesos = new JButton("Crear Matriz de Pesos");
+	private final JButton botonGenerar = new JButton("Generar Grafo");
+	private final JButton botonLiberar = new JButton("Liberar Grafo");
+	private final JButton botonVerificarAdyacencia = new JButton("Verificar Adyacencia");
+	private final JButton botonObtenerPeso = new JButton("Obtener Peso");
+	private final JButton botonEliminarArista = new JButton("Eliminar Arista");
+	private final JLabel labelOrigen = new JLabel("Origen:");
+	private final JLabel labelDestino = new JLabel("Destino:");
 	private VentanaMatriz ventanaMatriz = new VentanaMatriz();
 
-	private JComboBox<String> cboOrigen = new JComboBox<String>();
-	private JComboBox<String> cboDestino = new JComboBox<String>();
+	private final JComboBox<String> cboOrigen = new JComboBox<String>();
+	private final JComboBox<String> cboDestino = new JComboBox<String>();
 	
 	
 	public Ventana() {
@@ -109,36 +109,16 @@ public class Ventana extends JFrame {
 	}
 
 
-	public void setBotonAdyacencia(JButton botonAdyacencia) {
-		this.botonAdyacencia = botonAdyacencia;
-	}
-
-
 	public JButton getBotonIncidencia() {
 		return botonIncidencia;
 	}
-
-
-	public void setBotonIncidencia(JButton botonIncidencia) {
-		this.botonIncidencia = botonIncidencia;
-	}
-
 
 	public JButton getBotonPesos() {
 		return botonPesos;
 	}
 
-
-	public void setBotonPesos(JButton botonPesos) {
-		this.botonPesos = botonPesos;
-	}
-
 	public VentanaMatriz getVentanaMatriz() {
 		return ventanaMatriz;
-	}
-
-	public void setVentanaMatriz(VentanaMatriz ventanaMatriz) {
-		this.ventanaMatriz = ventanaMatriz;
 	}
 
 	public JButton getBotonGenerar() {

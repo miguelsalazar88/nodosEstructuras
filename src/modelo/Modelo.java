@@ -1,7 +1,10 @@
 package modelo;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Collections;
+=======
+>>>>>>> Miguel
 import utils.Utils;
 import vista.Ventana;
 
@@ -102,6 +105,7 @@ public class Modelo {
 				matriz [i+1][0] = nodosModelo.get(i).getNombre();
 			}
 			catch (Exception e){
+				System.out.println();
 			}
 		}
 
@@ -133,11 +137,16 @@ public class Modelo {
 				matriz[0][i+1] = aristasModelo.get(i).getNombre();
 			} catch (Exception e) {
 			}
+<<<<<<< HEAD
 		}
 		for (int i = 0; i < nodosModelo.size(); i++) {
 			try {
 				matriz[i+1][0] = nodosModelo.get(i).getNombre();
 			} catch (Exception e) {
+=======
+			catch (Exception e){
+				System.out.println("Pailander");
+>>>>>>> Miguel
 			}
 		}
 
@@ -146,11 +155,16 @@ public class Modelo {
 				try {
 					if (nodosModelo.get(i).getAristas().contains(aristasModelo.get(j))) {
 
+<<<<<<< HEAD
 						matriz[i + 1][j + 1] = "1";
 					} else {
 						matriz[i + 1][j + 1] = "0";
 					}
 				} catch (Exception e) {
+=======
+				if(nodosModelo.get(fila-1).getAristas().contains(aristasModelo.get(columna-1))){
+					matriz[fila][columna] = "1";
+>>>>>>> Miguel
 				}
 			}
 		}
@@ -190,10 +204,43 @@ public class Modelo {
 		this.vista.getVentanaMatriz().imprimirMatriz(matriz);
 	}
 
+<<<<<<< HEAD
+=======
+	public void setMatrizPesos(){
+
+		String[][] matriz = new String[nodosModelo.size()+1][nodosModelo.size()+1];
+		matriz[0][0] = "*";
+
+		for (int i = 0; i < nodosModelo.size(); i++) {
+			matriz[0][i+1] = nodosModelo.get(i).getNombre();
+			matriz[i+1][0] = nodosModelo.get(i).getNombre();
+			for (int j = 0; j < nodosModelo.size(); j++) {
+				if(i == j){
+					matriz[i+1][j+1] = "*";
+				}
+				else {
+					String arista = nodosModelo.get(i).getNombre() + nodosModelo.get(j).getNombre();
+					String atsira = nodosModelo.get(j).getNombre() + nodosModelo.get(i).getNombre();
+					for (Arista a: this.aristasModelo) {
+						if (a.getNombre().equals(arista) || a.getNombre().equals(atsira)){
+							matriz[i+1][j+1] = String.valueOf(a.getPeso());
+						}
+
+					}
+					if (matriz[i+1][j+1] ==null){
+						matriz[i+1][j+1] = "0";
+					}
+				}
+			}
+		}
+
+		this.vista.getVentanaMatriz().imprimirMatriz(matriz);
+	}
+>>>>>>> Miguel
 
 	public ArrayList<String> setOrigenDestino(){
 
-		ArrayList<String> listaOrigen = new ArrayList<String>();
+		ArrayList<String> listaOrigen = new ArrayList<>();
 
 		for (int i = 0; i < nodosModelo.size(); i++) {
 			listaOrigen.add(nodosModelo.get(i).getNombre());
