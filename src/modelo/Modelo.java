@@ -112,30 +112,36 @@ public class Modelo {
 	}
 
 	public void setIncidencia(){
-		String[][] matriz = new String[nodosModelo.size()+1][nodosModelo.size()+1];
+		String[][] matriz = new String[aristasModelo.size()+1][nodosModelo.size()+1];
 		matriz[0][0] = "*";
 
 		for (int i = 0; i < matriz.length; i++) {
-			try{
-				matriz [0][i+1] = aristasModelo.get(i).getNombre();
-				matriz [i+1][0] = nodosModelo.get(i).getNombre();
+			try {
+				matriz[0][i+1] = aristasModelo.get(i).getNombre();
+			} catch (Exception e) {
 			}
-			catch (Exception e){
+		}
+		for (int i = 0; i < nodosModelo.size(); i++) {
+			try {
+				matriz[i+1][0] = nodosModelo.get(i).getNombre();
+			} catch (Exception e) {
 			}
 		}
 
-		for (int fila = 1; fila < matriz.length; fila++) {
-			for (int columna = 1; columna < matriz.length; columna++) {
+		for (int i = 0; i <aristasModelo.size() ; i++) {
+			for (int j = 0; j < nodosModelo.size(); j++) {
+				try {
+					if (nodosModelo.get(i).getAristas().contains(aristasModelo.get(j))) {
 
-				if(nodosModelo.get(fila-1).getAristas().contains(nodosModelo.get(columna-1))){
-					matriz[fila][columna] = "1";
-					System.out.println("Tu madre");
-				}
-				else{
-					matriz[fila][columna] = "0";
+						matriz[i + 1][j + 1] = "1";
+					} else {
+						matriz[i + 1][j + 1] = "0";
+					}
+				} catch (Exception e) {
 				}
 			}
 		}
+
 		this.vista.getVentanaMatriz().imprimirMatriz(matriz);
 	}
 
