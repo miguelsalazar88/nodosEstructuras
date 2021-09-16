@@ -20,10 +20,10 @@ public class Ventana extends JFrame {
 	private final JButton botonEliminarArista = new JButton("Eliminar Arista");
 	private final JLabel labelOrigen = new JLabel("Origen:");
 	private final JLabel labelDestino = new JLabel("Destino:");
-	private VentanaMatriz ventanaMatriz = new VentanaMatriz();
+	private final VentanaMatriz ventanaMatriz = new VentanaMatriz();
 
-	private final JComboBox<String> cboOrigen = new JComboBox<String>();
-	private final JComboBox<String> cboDestino = new JComboBox<String>();
+	private final JComboBox<String> cboOrigen = new JComboBox<>();
+	private final JComboBox<String> cboDestino = new JComboBox<>();
 	
 	
 	public Ventana() {
@@ -95,16 +95,9 @@ public class Ventana extends JFrame {
 		}
 	}
 
-
 	public Panel getPanel() {
 		return panel;
 	}
-
-
-	public void setPanel(Panel panel) {
-		this.panel = panel;
-	}
-
 
 	public JButton getBotonAdyacencia() {
 		return botonAdyacencia;

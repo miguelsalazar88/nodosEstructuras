@@ -33,7 +33,7 @@ public class Controller implements ActionListener, ItemListener {
 		}
 
 		if (e.getSource().equals(this.vista.getBotonIncidencia())){
-			this.modelo.setInferencia();
+			this.modelo.setIncidencia();
 			this.vista.getVentanaMatriz().setVisible(true);
 		}
 

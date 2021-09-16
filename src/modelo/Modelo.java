@@ -9,8 +9,8 @@ import javax.swing.*;
 public class Modelo {
 	
 	private Ventana vista;
-	private ArrayList<Nodo> nodosModelo = new ArrayList<>();
-	private ArrayList<Arista> aristasModelo = new ArrayList<>(); //No se si lo necesito
+	private ArrayList<Nodo> nodosModelo = new ArrayList<Nodo>();
+	private ArrayList<Arista> aristasModelo = new ArrayList<Arista>(); //No se si lo necesito
 	
 	public Modelo(Ventana vista) {
 		this.vista = vista;
@@ -89,7 +89,6 @@ public class Modelo {
 				matriz [i+1][0] = nodosModelo.get(i).getNombre();
 			}
 			catch (Exception e){
-				System.out.println();
 			}
 		}
 
@@ -112,7 +111,7 @@ public class Modelo {
 
 	}
 
-	public void setInferencia(){
+	public void setIncidencia(){
 		String[][] matriz = new String[nodosModelo.size()+1][nodosModelo.size()+1];
 		matriz[0][0] = "*";
 
@@ -122,15 +121,15 @@ public class Modelo {
 				matriz [i+1][0] = nodosModelo.get(i).getNombre();
 			}
 			catch (Exception e){
-				System.out.println("Pailander");
 			}
 		}
 
 		for (int fila = 1; fila < matriz.length; fila++) {
 			for (int columna = 1; columna < matriz.length; columna++) {
 
-				if(nodosModelo.get(fila-1).getAristas().contains(aristasModelo.get(columna-1))){
+				if(nodosModelo.get(fila-1).getAristas().contains(nodosModelo.get(columna-1))){
 					matriz[fila][columna] = "1";
+					System.out.println("Tu madre");
 				}
 				else{
 					matriz[fila][columna] = "0";
@@ -173,7 +172,7 @@ public class Modelo {
 
 	public ArrayList<String> setOrigenDestino(){
 
-		ArrayList<String> listaOrigen = new ArrayList<>();
+		ArrayList<String> listaOrigen = new ArrayList<String>();
 
 		for (int i = 0; i < nodosModelo.size(); i++) {
 			listaOrigen.add(nodosModelo.get(i).getNombre());
@@ -239,7 +238,7 @@ public class Modelo {
 	public void eliminarArista(String a, String b){
 		String alDerecho = a+b;
 		String alReves = b+a;
-		boolean hayArista = false;
+		Boolean hayArista = false;
 
 		for (int i = 0; i < nodosModelo.size(); i++) {
 			for (int j = 0; j < nodosModelo.get(i).getAristas().size(); j++) {
@@ -271,5 +270,17 @@ public class Modelo {
 
 	public ArrayList<Nodo> getNodosModelo() {
 		return nodosModelo;
+	}
+
+	public void setNodosModelo(ArrayList<Nodo> nodosModelo) {
+		this.nodosModelo = nodosModelo;
+	}
+
+	public ArrayList<Arista> getAristasModelo() {
+		return aristasModelo;
+	}
+
+	public void setAristasModelo(ArrayList<Arista> aristasModelo) {
+		this.aristasModelo = aristasModelo;
 	}
 }
