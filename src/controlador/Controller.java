@@ -42,7 +42,18 @@ public class Controller implements ActionListener, ItemListener {
 			this.modelo.verificarAdyacencia(this.vista.getCboOrigen().getSelectedItem().toString(),
 					this.vista.getCboDestino().getSelectedItem().toString());
 		}
+
+		if(e.getSource().equals(this.vista.getBotonObtenerPeso())){
+			this.modelo.obtenerPeso(this.vista.getCboOrigen().getSelectedItem().toString(),
+					this.vista.getCboDestino().getSelectedItem().toString());
+		}
+
+		if(e.getSource().equals(this.vista.getBotonEliminarArista())){
+			this.modelo.eliminarArista(this.vista.getCboOrigen().getSelectedItem().toString(),
+					this.vista.getCboDestino().getSelectedItem().toString());
+		}
 	}
+
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {

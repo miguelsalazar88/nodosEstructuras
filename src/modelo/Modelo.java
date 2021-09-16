@@ -150,6 +150,59 @@ public class Modelo {
 		}
 	}
 
+	public void obtenerPeso(String a, String b){
+		String alDerecho = a+b;
+		String alReves = b+a;
+		int peso = 0;
+
+		for (int i = 0; i < nodosModelo.size(); i++) {
+			for (int j = 0; j < nodosModelo.get(i).getAristas().size(); j++) {
+				if(nodosModelo.get(i).getAristas().get(j).getNombre().equals(alDerecho)
+				|| nodosModelo.get(i).getAristas().get(j).getNombre().equals(alReves)){
+					peso = nodosModelo.get(i).getAristas().get(j).getPeso();
+				}
+			}
+		}
+
+		if(peso == 0){
+			JOptionPane.showMessageDialog(null, "La arista NO existe");
+		}
+
+		else{
+			JOptionPane.showMessageDialog(null, "El peso de la arista es " + peso);
+		}
+
+	}
+
+	public void eliminarArista(String a, String b){
+		String alDerecho = a+b;
+		String alReves = b+a;
+		Boolean hayArista = false;
+
+		for (int i = 0; i < nodosModelo.size(); i++) {
+			for (int j = 0; j < nodosModelo.get(i).getAristas().size(); j++) {
+				if(nodosModelo.get(i).getAristas().get(j).getNombre().equals(alDerecho)
+						|| nodosModelo.get(i).getAristas().get(j).getNombre().equals(alReves)){
+					nodosModelo.get(i).getAristas().remove(j);
+					hayArista = true;
+				}
+			}
+		}
+
+		if(hayArista){
+			JOptionPane.showMessageDialog(null, "La arista ha sido " +
+					"eliminada exitosamente");
+		}
+
+		else{
+			JOptionPane.showMessageDialog(null,"La arista NO existe ,por lo tanto " +
+					"no puede ser eliminada");
+		}
+		this.vista.getPanel().setNodosVista(nodosModelo);
+		this.vista.getPanel().repaint();
+
+	}
+
 
 
 	//Getters y Setters
