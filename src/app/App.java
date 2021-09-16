@@ -7,6 +7,8 @@ import modelo.Nodo;
 import utils.Utils;
 import vista.Ventana;
 
+import javax.swing.*;
+
 public class App {
 
 	public static void main(String[] args) {
