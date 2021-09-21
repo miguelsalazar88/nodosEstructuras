@@ -25,12 +25,10 @@ public class VentanaMatriz extends JDialog {
 
         for (int filas = 0; filas < matriz.length; filas++) {
             for (int columnas = 0; columnas < matriz[0].length; columnas++) {
+
                 this.tabla.setValueAt(matriz[filas][columnas],filas,columnas);
             }
         }
 
     }
-
-
-
 }

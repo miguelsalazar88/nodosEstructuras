@@ -1,6 +1,8 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import utils.Utils;
 import vista.Ventana;
 
@@ -19,6 +21,7 @@ public class Modelo {
 	public void crearGrafo() {
 		
 		this.nodosModelo.clear();
+		this.aristasModelo.clear();
 		
 		int num = Utils.rnd.nextInt(4)+6;
 		
@@ -141,7 +144,6 @@ public class Modelo {
 				}
 			}
 		}
-
 		this.vista.getVentanaMatriz().imprimirMatriz(matriz);
 	}
 
